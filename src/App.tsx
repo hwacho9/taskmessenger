@@ -7,6 +7,14 @@ import CreateAccount from "./routes/create-account";
 import { useEffect, useState } from "react";
 import LoadingScreen from "./components/loading-screen";
 import { auth } from "./firebase";
+import { styled } from "styled-components";
+
+const Wrapper = styled.div`
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: #f5f5f5;
+`;
 
 const router = createBrowserRouter([
     {
@@ -39,9 +47,9 @@ function App() {
     }, []);
 
     return (
-        <>
+        <Wrapper>
             {isLoading ? <LoadingScreen /> : <RouterProvider router={router} />}
-        </>
+        </Wrapper>
     );
 }
 
