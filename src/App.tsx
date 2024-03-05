@@ -9,6 +9,7 @@ import LoadingScreen from "./components/loading-screen";
 import { auth } from "./firebase";
 import { styled } from "styled-components";
 import ProtectedRoute from "./components/protected-route";
+import InitPage from "./routes/init";
 
 const Wrapper = styled.div`
     height: 100vh;
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
                 element: <Profile />,
             },
         ],
+    },
+    {
+        path: "/init",
+        element: <InitPage />,
     },
     {
         path: "/login",
