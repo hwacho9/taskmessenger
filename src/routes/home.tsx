@@ -1,10 +1,11 @@
 import { auth } from "../firebase";
-import Sidebar from "../components/sidebar";//サイドバーを挿入
 import { styled } from "styled-components";
+import Sidebar from "../components/sidebar";//サイドバーを挿入
+
 //サイドバーのコンポーネント
 export const Wrapper = styled.div`
     height: 100 %;
-    width: 250px;
+    width: 100%;
 `;
 
 import { useNavigate } from "react-router-dom";
@@ -22,9 +23,8 @@ export default function Home() {
                 <h1>
                     <button onClick={logOut}>Logout</button>Home
                 </h1>
-                <Sidebar />
             </Wrapper>
-
+            <Sidebar />
         </div>
 
     );

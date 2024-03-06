@@ -9,7 +9,9 @@ function Sidebar() {
                 <SidebarList>
                     {SidebarData.map((value, key) => {
                         return (
-                            <li>
+                            <li onClick={() => {
+                                window.location.pathname = value.link;
+                            }}>
                                 <div>{value.title}</div>
                             </li>
                         );
