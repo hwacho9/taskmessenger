@@ -10,6 +10,8 @@ import { auth } from "./firebase";
 import { styled } from "styled-components";
 import ProtectedRoute from "./components/protected-route";
 import InitPage from "./routes/init";
+import Task from "./routes/taskmanager";
+
 
 const Wrapper = styled.div`
     height: 100vh;
@@ -34,6 +36,10 @@ const router = createBrowserRouter([
             {
                 path: "profile",
                 element: <Profile />,
+            },
+            {
+                path: "tasks",
+                element: <Task />,
             },
         ],
     },

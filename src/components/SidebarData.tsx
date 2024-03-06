@@ -11,6 +11,6 @@ export const SidebarData = [
     },
     {
         title: "タスク管理",
-        link: "/InitPage",
+        link: "/tasks",
     }
 ]
