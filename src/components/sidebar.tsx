@@ -1,18 +1,12 @@
-import { styled } from "styled-components";
-import { Side, SidebarList } from "./side-components";
+import { Wrapper, Side, SidebarList } from "./side-components";
 import { SidebarData } from "./SidebarData"
 
-const Wrapper = styled.div`
-    height: 100%;
-    width: 250px;
-    background-color: #f5f5f5;
-`;
 
 function Sidebar() {
     return (
         <Wrapper>
             <Side>
-                <ul className="SidebarList">
+                <SidebarList>
                     {SidebarData.map((value, key) => {
                         return (
                             <li>
@@ -20,7 +14,7 @@ function Sidebar() {
                             </li>
                         );
                     })}
-                </ul>
+                </SidebarList>
             </Side>
         </Wrapper>
     )

@@ -67,6 +67,7 @@ function App() {
         <Wrapper>
             {isLoading ? <LoadingScreen /> : <RouterProvider router={router} />}
         </Wrapper>
+
     );
 }
 

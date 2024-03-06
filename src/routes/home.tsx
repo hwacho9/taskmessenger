@@ -17,13 +17,15 @@ export default function Home() {
     };
 
     return (
-        <Wrapper>
-            <h1>
-                <button onClick={logOut}>Logout</button>Home
-            </h1>
-            <div>
+        <div>
+            <Wrapper>
+                <h1>
+                    <button onClick={logOut}>Logout</button>Home
+                </h1>
                 <Sidebar />
-            </div>
-        </Wrapper>
+            </Wrapper>
+
+        </div>
+
     );
 }
