@@ -1,4 +1,3 @@
-import React from "react";
 import { styled } from "styled-components";
 
 export const SidebarData = [
@@ -7,5 +6,8 @@ export const SidebarData = [
     },
     {
         title: "メッセージ",
+    },
+    {
+        title: "タスク管理",
     }
 ]

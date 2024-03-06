@@ -11,6 +11,7 @@ import { styled } from "styled-components";
 import ProtectedRoute from "./components/protected-route";
 import InitPage from "./routes/init";
 
+
 const Wrapper = styled.div`
     height: 100vh;
     display: flex;
