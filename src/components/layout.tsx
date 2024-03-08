@@ -1,4 +1,4 @@
-import { Home, LogOut, User } from "lucide-react";
+import { Home, LogOut, MessageCircle, User } from "lucide-react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import { auth } from "../firebase";
@@ -16,6 +16,7 @@ const Wrapper = styled.div`
 const MenuItem = styled.div`
     display: flex;
     flex-direction: column;
+
     align-items: center;
     margin-top: 30px;
 `;
@@ -31,6 +32,7 @@ const Menu = styled.div`
     height: 600px;
     width: 50px;
     &.log-out {
+        margin-top: 100px;
         bottom: 0px;
     }
 `;
@@ -48,19 +50,19 @@ export default function Layout() {
             <Menu>
                 <Link to="/">
                     <MenuItem>
-                        <Home />
+                        <Home color="black" />
                     </MenuItem>
                 </Link>
 
                 <Link to="/chat">
                     <MenuItem>
-                        <Home />
+                        <MessageCircle color="black" />
                     </MenuItem>
                 </Link>
 
                 <Link to="/profile">
                     <MenuItem>
-                        <User />
+                        <User color="black" />
                     </MenuItem>
                 </Link>
 
