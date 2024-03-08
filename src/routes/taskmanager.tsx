@@ -1,4 +1,3 @@
-import { fetchTasks } from "../components/tasks"
 import { Chat } from "../components/Gpt-result"
 import { db } from '../firebase';
 import { child, get, ref, set, getDatabase } from "firebase/database";
@@ -40,16 +39,45 @@ function process(text: string) {
 
 
 export default function Profile() {
-    const [tasks, setTasks] = useState<any[]>([]); //anyがたに合わせるようにした
     const [gptResult, setGptResult] = useState<string>(""); // 新しい状態変数
 
 
     useEffect(() => {
-        fetchTasks().then((data) => setTasks(data));
         Chat().then((result) => setGptResult(result)); //GPT使うときに使用
     }, []);
-    var Tex = process(gptResult);
-
+    console.log(gptResult);
+    //保健用のプロンプト
+    const response = `
+    1. task: AR作品の開発要件のについて
+    priority: 1
+    from: 2392677b
+    due_date: 不明
+    2. task: 7つの習慣を読んでください
+    priority: 2
+    from: imakoh.app
+    due_date: 不明
+    3. task: 飲み会します
+    priority: 3
+    from: 2392677b
+    due_date: 不明
+    4. task: カレーライスを作る
+    priority: 4
+    from: imakoh.app
+    due_date: 不明
+    5. task: Pythonの機械学習について勉強してくださいね
+    priority: 5
+    from: shokubota7280
+    due_date: 不明
+    6. task: 明日定期ミーティングです
+    priority: 6
+    from: shokubota7280
+    due_date: 明日
+    7. task: React勉強会は今日です
+    priority: 7
+    from: shokubota7280
+    due_date: 今日
+    `;
+    var Tex = process(response);
     const dbRef = ref(getDatabase());
     get(child(dbRef, `users`))
         .then((snapshot) => {
@@ -75,8 +103,6 @@ export default function Profile() {
     for (var i = 1; i <= Tex.length; i++) {
 
         const readRef = ref(db, `/users/` + i.toString() + "/");
-        console.log(i.toString());
-        console.log(readRef);
         /*
         get(readRef)
             .then((snapshot) => {
