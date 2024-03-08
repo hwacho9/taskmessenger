@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-import { auth, firestore } from "../firebase"; // Import your Firebase configuration
-import { doc, collection } from "firebase/firestore"; // Import the necessary package
+import { useState } from "react";
 import styled from "styled-components";
+import firebase from "firebase/app"; // Import the firebase package
 
 export default function Chat() {
     const [msg, setMsg] = useState("");
@@ -23,23 +22,6 @@ export default function Chat() {
             is_online: true,
         },
     ];
-
-    const handleOnChange = (e) => {
-        setMsg(e.target.value);
-    };
-    const handleSumbit = async (e: { preventDefault: () => void }) => {
-        e.preventDefault();
-        console.log(msg);
-        try {
-            sendChat({
-                message: msg,
-                timestamp: Date.now(),
-                uid: undefined,
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    };
 
     const Usermenu = styled.div`
         display: flex;
@@ -95,14 +77,14 @@ export default function Chat() {
                     </User>
                 </Usermenu>
 
-                <form onSubmit={handleSumbit}>
+                {/* <form onSubmit={handleSumbit}>
                     <input
                         placeholder="내용을 입력하세요."
                         value={msg}
                         onChange={handleOnChange}
                     />
                     <button type="submit">전송</button>
-                </form>
+                </form> */}
             </Chatlayout>
             {/* <div className="chat-bottom">
                 <form onSubmit={handleSumbit}>
@@ -116,7 +98,4 @@ export default function Chat() {
             </div> */}
         </Chatscreen>
     );
-}
-function sendChat(arg0: { message: string; timestamp: number; uid: any }) {
-    throw new Error("Function not implemented.");
 }

@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useState } from "react";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
 import {
@@ -11,7 +11,6 @@ import {
     Wrapper,
     Error,
 } from "../components/auth-components";
-import { Firestore, doc, setDoc } from "firebase/firestore";
 
 export default function CreateAccount() {
     const navigate = useNavigate();
@@ -19,6 +18,7 @@ export default function CreateAccount() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
     const [error, setError] = useState("");
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,6 +42,7 @@ export default function CreateAccount() {
                 password
             );
 
+            // db.collection("users").doc(credentials.user.uid).set({});
             console.log(credentials.user);
             await updateProfile(credentials.user, { displayName: name });
             navigate("/");

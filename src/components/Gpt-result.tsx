@@ -43,7 +43,7 @@ export const Chat = async () => {
         priority: 7
         from: shokubota7280
         due_date: 今日
-        `
+        `;
         /*
         const response = await axios.post(`${API_URL}chat/completions`, {
             // モデル ID の指定
@@ -78,9 +78,8 @@ export const Chat = async () => {
         // 回答の取得
         //return response.data.choices[0].message.content;
         return response;
-
     } catch (error) {
         console.error(error);
         return null;
     }
-}
+};
