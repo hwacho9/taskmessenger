@@ -1,5 +1,8 @@
 import { fetchTasks } from "../components/tasks"
 import { Chat } from "../components/Gpt-result"
+import { db } from '../firebase';
+import { child, get, ref, set, getDatabase } from "firebase/database";
+
 
 import { useEffect, useState } from "react";
 
@@ -32,20 +35,71 @@ function process(text: string) {
             due_date: `${due_date.split("\n")[0]}`,
         });
     }
-    console.log(tasks);
     return tasks
 }
+
 
 export default function Profile() {
     const [tasks, setTasks] = useState<any[]>([]); //anyがたに合わせるようにした
     const [gptResult, setGptResult] = useState<string>(""); // 新しい状態変数
+
 
     useEffect(() => {
         fetchTasks().then((data) => setTasks(data));
         Chat().then((result) => setGptResult(result)); //GPT使うときに使用
     }, []);
     var Tex = process(gptResult);
-    console.log(Tex);
+
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, `users`))
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                //console.log(snapshot.val());
+            } else {
+                console.log("No data available");
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    //データの格納
+    for (const item of Tex) {
+        set(ref(db, `/users/` + item.priority.toString() + "/"), {
+            todotask: item.task,
+            from: item.from,
+            due_date: item.due_date,
+        });
+    }
+    const TodoData = [];
+    // データの読み込み
+    for (var i = 1; i <= Tex.length; i++) {
+
+        const readRef = ref(db, `/users/` + i.toString() + "/");
+        console.log(i.toString());
+        console.log(readRef);
+        /*
+        get(readRef)
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    // データ取得成功時の処理
+
+                    TodoData.push({
+                        task: snapshot.val().todotask,
+                        priority: i.toString(),
+                        from: snapshot.val().from,
+                        due_date: snapshot.val().due_date,
+                    });
+                    console.log(snapshot.val().priority); // Realtime Database の内容が出力されます
+                } else {
+                    console.log("No data available:", i.toString());
+                }
+            })
+            .catch((error) => {
+                console.error("読み込みエラー:", i.toString(), error);
+            });
+            */
+    }
+
     //内容をコピペ
     return (
         <div>
@@ -70,6 +124,8 @@ export default function Profile() {
                                 <td> {task.from} </td>
                                 <td> {task.due_date} </td>
                             </tr>
+
+
                         ))}
                     </tbody>
                 </table>

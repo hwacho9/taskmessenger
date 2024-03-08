@@ -1,7 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getDatabase } from "firebase/database";
 import { getAuth } from "firebase/auth";
+import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -10,6 +13,7 @@ import { getAuth } from "firebase/auth";
 const firebaseConfig = {
     apiKey: "AIzaSyD_aBz6Bva8QgKPGkh6qrCMuHpun9o0ldc",
     authDomain: "taskmessenger-4667d.firebaseapp.com",
+    databaseURL: "https://taskmessenger-4667d-default-rtdb.asia-southeast1.firebasedatabase.app",
     projectId: "taskmessenger-4667d",
     storageBucket: "taskmessenger-4667d.appspot.com",
     messagingSenderId: "371404961854",
@@ -19,6 +23,8 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app)
+const db = getDatabase();
 // const analytics = getAnalytics(app);
 
-export const auth = getAuth(app);
+export { auth, app, db, collection, addDoc, getDocs };
