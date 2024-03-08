@@ -52,14 +52,27 @@ export default function Profile() {
             <h1>taskmanager</h1>
             <ul>
                 <div>GPT-3による抽出結果</div>
-                {Tex.map((task) => (
-                    <li>
-                        <div>task: {task.task}</div>
-                        <div>priority: {task.priority}</div>
-                        <div>from: {task.from}</div>
-                        <div>due_date: {task.due_date}</div>
-                    </li>
-                ))}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>タスク内容</th>
+                            <th>優先順位</th>
+                            <th>お願いした人</th>
+                            <th>期日</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {Tex.map((task) => (
+                            <tr>
+                                <td> {task.task} </td>
+                                <td> {task.priority} </td>
+                                <td> {task.from} </td>
+                                <td> {task.due_date} </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
 
             </ul>
         </div>

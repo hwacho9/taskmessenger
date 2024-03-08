@@ -3,44 +3,44 @@ import axios from 'axios';
 
 const API_URL = 'https://api.openai.com/v1/';
 const MODEL = 'gpt-4-1106-preview';
-const API_KEY = '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';
+const API_KEY = 'エーピーアイキー';
 */
 
 export const Chat = async () => {
     try {
         const response = `
         1. task: AR作品の開発要件のについて
-        priority: 不明
+        priority: 1
         from: 2392677b
         due_date: 不明
         
         2. task: 7つの習慣を読んでください
-        priority: 不明
+        priority: 2
         from: imakoh.app
         due_date: 不明
         
         3. task: 飲み会します
-        priority: 不明
+        priority: 3
         from: 2392677b
         due_date: 不明
         
         4. task: カレーライスを作る
-        priority: 不明
+        priority: 4
         from: imakoh.app
         due_date: 不明
         
         5. task: Pythonの機械学習について勉強してくださいね
-        priority: 不明
+        priority: 5
         from: shokubota7280
         due_date: 不明
         
         6. task: 明日定期ミーティングです
-        priority: 不明
+        priority: 6
         from: shokubota7280
         due_date: 明日
         
         7. task: React勉強会は今日です
-        priority: 不明
+        priority: 7
         from: shokubota7280
         due_date: 今日
         `
