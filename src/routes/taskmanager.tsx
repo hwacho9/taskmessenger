@@ -2,6 +2,7 @@ import { fetchTasks } from "../components/tasks";
 import { Chat } from "../components/Gpt-result";
 
 import { useEffect, useState } from "react";
+import { styled } from "styled-components";
 
 //タスク抽出する関数
 function process(text: string) {
@@ -36,6 +37,12 @@ function process(text: string) {
     return tasks;
 }
 
+const Wapper = styled.div`
+    height: 100%;
+    width: 940px;
+    background-color: #e4dbdb;
+`;
+
 export default function Profile() {
     const [tasks, setTasks] = useState<any[]>([]); //anyがたに合わせるようにした
     const [gptResult, setGptResult] = useState<string>(""); // 新しい状態変数
@@ -49,31 +56,33 @@ export default function Profile() {
     //内容をコピペ
     return (
         <div>
-            <h1>taskmanager</h1>
-            <ul>
-                <div>GPT-3による抽出結果</div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>タスク内容</th>
-                            <th>優先順位</th>
-                            <th>お願いした人</th>
-                            <th>期日</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {Tex.map((task) => (
+            <Wapper>
+                <h1>taskmanager</h1>
+                <ul>
+                    <div>GPT-3による抽出結果</div>
+                    <table>
+                        <thead>
                             <tr>
-                                <td> {task.task} </td>
-                                <td> {task.priority} </td>
-                                <td> {task.from} </td>
-                                <td> {task.due_date} </td>
+                                <th>タスク内容</th>
+                                <th>優先順位</th>
+                                <th>お願いした人</th>
+                                <th>期日</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </ul>
+                        </thead>
+
+                        <tbody>
+                            {Tex.map((task) => (
+                                <tr>
+                                    <td> {task.task} </td>
+                                    <td> {task.priority} </td>
+                                    <td> {task.from} </td>
+                                    <td> {task.due_date} </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </ul>
+            </Wapper>
         </div>
     );
 }

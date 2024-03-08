@@ -1,4 +1,4 @@
-import { Home, LogOut, MessageCircle, User } from "lucide-react";
+import { Home, ListTodo, LogOut, MessageCircle, User } from "lucide-react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import { auth } from "../firebase";
@@ -52,6 +52,12 @@ export default function Layout() {
                 <Link to="/">
                     <MenuItem>
                         <Home color="black" />
+                    </MenuItem>
+                </Link>
+
+                <Link to="/tasks">
+                    <MenuItem>
+                        <ListTodo color="black" />
                     </MenuItem>
                 </Link>
 

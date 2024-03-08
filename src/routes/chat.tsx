@@ -66,21 +66,16 @@ export default function Chat() {
         width: 1000px;
     `;
 
-    const UserInfo = styled.div`
-        display: flex;
-        justify-content: space-around;
-    `;
-
     const Conversation = styled.div`
         display: flex;
-        width: 700px;
+        width: 600px;
         justify-content: center;
         align-items: center;
     `;
 
     const New = styled.div`
         display: flex;
-        width: 881px;
+        width: 20px;
         padding: 253px 299px 253px 300px;
         justify-content: center;
         align-items: center;

@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 export const Wrapper = styled.div`
     height: 100%;
     background-color: #e4dbdb;
-    width: 1000px;
+    width: 940px;
 `;
 
 export default function Home() {
