@@ -11,7 +11,7 @@ import { styled } from "styled-components";
 import ProtectedRoute from "./components/protected-route";
 import InitPage from "./routes/init";
 import Task from "./routes/taskmanager";
-
+import Chat from "./routes/chat";
 
 const Wrapper = styled.div`
     height: 100vh;
@@ -40,6 +40,10 @@ const router = createBrowserRouter([
             {
                 path: "tasks",
                 element: <Task />,
+            },
+            {
+                path: "chat",
+                element: <Chat />,
             },
         ],
     },
@@ -71,10 +75,7 @@ function App() {
     return (
         <Wrapper>
             {isLoading ? <LoadingScreen /> : <RouterProvider router={router} />}
-
         </Wrapper>
-
-
     );
 }
 

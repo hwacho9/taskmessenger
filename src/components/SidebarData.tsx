@@ -1,5 +1,3 @@
-import { styled } from "styled-components";
-
 export const SidebarData = [
     {
         title: "ホーム",
@@ -12,5 +10,5 @@ export const SidebarData = [
     {
         title: "タスク管理",
         link: "/tasks",
-    }
-]
+    },
+];
