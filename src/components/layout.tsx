@@ -5,7 +5,8 @@ import { auth } from "../firebase";
 
 const Wrapper = styled.div`
     display: flex;
-    justify-content: left;
+    justify-content: center;
+    left: 0px;
     height: 100%;
     gap: 20px;
     padding: 50px 0px;
@@ -28,9 +29,9 @@ const Menu = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border: 2px solid #f0f0f0;
+    border: 1px solid #b9aeae;
     height: 600px;
-    width: 50px;
+    padding: 20px;
     &.log-out {
         margin-top: 100px;
         bottom: 0px;

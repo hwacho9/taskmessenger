@@ -1,25 +1,25 @@
-import { fetchTasks } from "../components/tasks"
-import { Chat } from "../components/Gpt-result"
+import { fetchTasks } from "../components/tasks";
+import { Chat } from "../components/Gpt-result";
 
 import { useEffect, useState } from "react";
 
 //タスク抽出する関数
 function process(text: string) {
-    var tex1 = ""
-    var tex2 = ""
+    let tex1 = "";
+    let tex2 = "";
     const todos = [];
-    for (var i = 1; i < 7; i++) {
+    for (let i = 1; i < 7; i++) {
         tex1 = `${text.split(i.toString() + ".")[1]}`;
         tex2 = `${tex1.split((i + 1).toString() + ".")[0]}`;
-        todos.push(tex2)
+        todos.push(tex2);
     }
     tex1 = `${text.split("7.")[1]}`;
-    todos.push(tex1)
+    todos.push(tex1);
     const tasks = [];
-    var todotask = "";
-    var priority = "";
-    var from = "";
-    var due_date = "";
+    let todotask = "";
+    let priority = "";
+    let from = "";
+    let due_date = "";
     for (const item of todos) {
         todotask = `${item.split("task: ")[1]}`;
         priority = `${item.split("priority: ")[1]}`;
@@ -33,7 +33,7 @@ function process(text: string) {
         });
     }
     console.log(tasks);
-    return tasks
+    return tasks;
 }
 
 export default function Profile() {
@@ -44,7 +44,7 @@ export default function Profile() {
         fetchTasks().then((data) => setTasks(data));
         Chat().then((result) => setGptResult(result)); //GPT使うときに使用
     }, []);
-    var Tex = process(gptResult);
+    let Tex = process(gptResult);
     console.log(Tex);
     //内容をコピペ
     return (
@@ -73,7 +73,6 @@ export default function Profile() {
                         ))}
                     </tbody>
                 </table>
-
             </ul>
         </div>
     );
