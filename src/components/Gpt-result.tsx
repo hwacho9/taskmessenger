@@ -3,12 +3,11 @@ import axios from 'axios';
 
 const API_URL = 'https://api.openai.com/v1/';
 const MODEL = 'gpt-4-1106-preview';
-const API_KEY = 'エーピーアイキー';
+const API_KEY = 'sk-エーピーアイキー';
 */
-
 export const Chat = async () => {
     try {
-        const response = `
+        const response1 = `
         1. task: AR作品の開発要件のについて
         priority: 1
         from: 2392677b
@@ -74,10 +73,15 @@ export const Chat = async () => {
                 'Authorization': `Bearer ${API_KEY}`
             }
         });
-        */
         // 回答の取得
         //return response.data.choices[0].message.content;
+<<<<<<< HEAD
+        */
+        return response1;
+
+=======
         return response;
+>>>>>>> 7ece50056243f40920f533bb63b11f26a14c216c
     } catch (error) {
         console.error(error);
         return null;

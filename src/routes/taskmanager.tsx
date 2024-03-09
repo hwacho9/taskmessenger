@@ -33,8 +33,10 @@ function process(text: string) {
             due_date: `${due_date.split("\n")[0]}`,
         });
     }
-    console.log(tasks);
-    return tasks;
+
+    //console.log(tasks);
+    return tasks
+
 }
 
 const Wapper = styled.div`
@@ -51,38 +53,65 @@ export default function Profile() {
         fetchTasks().then((data) => setTasks(data));
         Chat().then((result) => setGptResult(result)); //GPT使うときに使用
     }, []);
+<<<<<<< HEAD
+    var Tex = process(gptResult);
+    //console.log(Tex);
+    //内容をコピペ
+    return (
+        <div>
+            <h1>taskmanager</h1>
+            <ul>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>優先順位</th>
+                            <th>タスク内容</th>
+                            <th>お願いした人</th>
+                            <th>期日</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {Tex.map((task) => (
+                            <tr>
+                                <td> {task.priority} </td>
+                                <td> {task.task} </td>
+                                <td> {task.from} </td>
+                                <td> {task.due_date} </td>
+=======
     const Tex = process(gptResult);
     console.log(Tex);
     //内容をコピペ
     return (
         <div>
-            <Wapper>
-                <h1>taskmanager</h1>
-                <ul>
-                    <div>GPT-3による抽出結果</div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>タスク内容</th>
-                                <th>優先順位</th>
-                                <th>お願いした人</th>
-                                <th>期日</th>
-                            </tr>
-                        </thead>
+                                    <Wapper>
+                                        <h1>taskmanager</h1>
+                                        <ul>
+                                            <div>GPT-3による抽出結果</div>
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>タスク内容</th>
+                                                        <th>優先順位</th>
+                                                        <th>お願いした人</th>
+                                                        <th>期日</th>
+>>>>>>> 7ece50056243f40920f533bb63b11f26a14c216c
+                                                    </tr>
+                                                </thead>
 
-                        <tbody>
-                            {Tex.map((task) => (
-                                <tr>
-                                    <td> {task.task} </td>
-                                    <td> {task.priority} </td>
-                                    <td> {task.from} </td>
-                                    <td> {task.due_date} </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </ul>
-            </Wapper>
-        </div>
-    );
+                                                <tbody>
+                                                    {Tex.map((task) => (
+                                                        <tr>
+                                                            <td> {task.task} </td>
+                                                            <td> {task.priority} </td>
+                                                            <td> {task.from} </td>
+                                                            <td> {task.due_date} </td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
+                                        </ul>
+                                    </Wapper>
+                                </div>
+                                );
 }
