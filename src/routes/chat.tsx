@@ -109,6 +109,15 @@ export default function Chat() {
         align-items: center;
     `;
 
+    const Div = styled.div`
+        color: green;
+    `;
+
+    const Task = styled.div`
+        color: blue;
+        margin-top: -20px;
+    `;
+
     return (
         <Chatscreen className="chat-container">
             <div className="chat-top">
@@ -129,11 +138,13 @@ export default function Chat() {
                                         }}
                                     />
                                     <div>{user.name}</div>
-                                    <div>
+                                    <Div>
                                         {user.is_online ? "online" : "offline"}
-                                    </div>
+                                    </Div>
                                 </Userprofile>
-                                <div>{user.task_ing}</div>
+                                <Task>
+                                    <div>{user.task_ing}</div>
+                                </Task>
                             </div>
                         ))}
                     </User>
