@@ -32,7 +32,7 @@ function process(text: string) {
             due_date: `${due_date.split("\n")[0]}`,
         });
     }
-    console.log(tasks);
+    //console.log(tasks);
     return tasks
 }
 
@@ -45,18 +45,17 @@ export default function Profile() {
         Chat().then((result) => setGptResult(result)); //GPT使うときに使用
     }, []);
     var Tex = process(gptResult);
-    console.log(Tex);
+    //console.log(Tex);
     //内容をコピペ
     return (
         <div>
             <h1>taskmanager</h1>
             <ul>
-                <div>GPT-3による抽出結果</div>
                 <table>
                     <thead>
                         <tr>
-                            <th>タスク内容</th>
                             <th>優先順位</th>
+                            <th>タスク内容</th>
                             <th>お願いした人</th>
                             <th>期日</th>
                         </tr>
@@ -65,8 +64,8 @@ export default function Profile() {
                     <tbody>
                         {Tex.map((task) => (
                             <tr>
-                                <td> {task.task} </td>
                                 <td> {task.priority} </td>
+                                <td> {task.task} </td>
                                 <td> {task.from} </td>
                                 <td> {task.due_date} </td>
                             </tr>
