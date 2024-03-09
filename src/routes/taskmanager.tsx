@@ -40,7 +40,7 @@ function process(text: string) {
 const Wapper = styled.div`
     height: 100%;
     width: 940px;
-    background-color: #e4dbdb;
+    /* background-color: #e4dbdb; */
 `;
 
 export default function Profile() {
@@ -51,7 +51,7 @@ export default function Profile() {
         fetchTasks().then((data) => setTasks(data));
         Chat().then((result) => setGptResult(result)); //GPT使うときに使用
     }, []);
-    let Tex = process(gptResult);
+    const Tex = process(gptResult);
     console.log(Tex);
     //内容をコピペ
     return (

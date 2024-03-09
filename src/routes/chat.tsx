@@ -11,16 +11,19 @@ export default function Chat() {
             uid: "1",
             name: "sam",
             is_online: true,
+            task_ing: "DB作業中",
         },
         {
             uid: "2",
             name: "tom",
-            is_online: false,
+            is_online: "false",
+            task_ing: "フロントエンド作業中",
         },
         {
             uid: "3",
             name: "jerry",
             is_online: true,
+            task_ing: "プレゼンの資料作成中",
         },
     ];
 
@@ -87,7 +90,7 @@ export default function Chat() {
         display: flex;
         width: 180px;
         height: 44px;
-        padding: 17px 16px;
+        padding: 15px 15px;
         justify-content: center;
         align-items: center;
         gap: 10px;
@@ -130,6 +133,7 @@ export default function Chat() {
                                         {user.is_online ? "online" : "offline"}
                                     </div>
                                 </Userprofile>
+                                <div>{user.task_ing}</div>
                             </div>
                         ))}
                     </User>
