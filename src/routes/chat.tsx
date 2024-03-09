@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { auth, firestore } from "../firebase"; // Import your Firebase configuration
-import { doc, collection } from "firebase/firestore"; // Import the necessary package
+import { useState } from "react";
 import styled from "styled-components";
+import firebase from "firebase/app"; // Import the firebase package
+import { MessageCircle } from "lucide-react";
 
 export default function Chat() {
     const [msg, setMsg] = useState("");
@@ -11,41 +11,27 @@ export default function Chat() {
             uid: "1",
             name: "sam",
             is_online: true,
+            task_ing: "DB作業中",
         },
         {
             uid: "2",
             name: "tom",
-            is_online: false,
+            is_online: "false",
+            task_ing: "フロントエンド作業中",
         },
         {
             uid: "3",
             name: "jerry",
             is_online: true,
+            task_ing: "プレゼンの資料作成中",
         },
     ];
-
-    const handleOnChange = (e) => {
-        setMsg(e.target.value);
-    };
-    const handleSumbit = async (e: { preventDefault: () => void }) => {
-        e.preventDefault();
-        console.log(msg);
-        try {
-            sendChat({
-                message: msg,
-                timestamp: Date.now(),
-                uid: undefined,
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    };
 
     const Usermenu = styled.div`
         display: flex;
         flex-direction: column;
         gap: 10px;
-        width: 100px;
+        width: 300px;
         margin: 20px;
         /* background-color: tomato; */
     `;
@@ -53,17 +39,23 @@ export default function Chat() {
         display: flex;
         flex-direction: column;
         gap: 10px;
-        justify-content: center;
-        /* background-color: tomato; */
+        width: 200px;
+        padding: 20px;
+        height: 600px;
+        &:hover {
+            cursor: pointer;
+        }
     `;
 
     const Userprofile = styled.div`
+        border-bottom: 2px solid #f0f0f0;
         display: flex;
-        flex-direction: column;
         gap: 10px;
-        background-color: tomato;
-        justify-content: center;
         align-items: center;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        margin-bottom: 30px;
     `;
 
     const Chatlayout = styled.div`
@@ -74,8 +66,49 @@ export default function Chat() {
 
     const Chatscreen = styled.div`
         background-color: #e4dbdb;
-        width: 700px;
+        width: 1000px;
     `;
+
+    const Conversation = styled.div`
+        display: flex;
+        width: 600px;
+        justify-content: center;
+        align-items: center;
+    `;
+
+    const New = styled.div`
+        display: flex;
+        width: 20px;
+        padding: 253px 299px 253px 300px;
+        justify-content: center;
+        align-items: center;
+        align-self: stretch;
+        flex-direction: column;
+    `;
+
+    const Button = styled.div`
+        display: flex;
+        width: 180px;
+        height: 44px;
+        padding: 15px 15px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 12px;
+        background: var(--Primary, #5570f1);
+        &:hover {
+            cursor: pointer;
+        }
+    `;
+
+    const Text = styled.div`
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        justify-content: center;
+        align-items: center;
+    `;
+
     return (
         <Chatscreen className="chat-container">
             <div className="chat-top">
@@ -86,23 +119,46 @@ export default function Chat() {
                     <User>
                         {users.map((user) => (
                             <div key={user.uid}>
-                                <Userprofile>{user.name}</Userprofile>
-                                <div>
-                                    {user.is_online ? "온라인" : "오프라인"}
-                                </div>
+                                <Userprofile>
+                                    <img
+                                        src="https://www.w3schools.com/howto/img_avatar.png"
+                                        alt="Avatar"
+                                        style={{
+                                            width: "100%",
+                                            borderRadius: "50%",
+                                        }}
+                                    />
+                                    <div>{user.name}</div>
+                                    <div>
+                                        {user.is_online ? "online" : "offline"}
+                                    </div>
+                                </Userprofile>
+                                <div>{user.task_ing}</div>
                             </div>
                         ))}
                     </User>
                 </Usermenu>
 
-                <form onSubmit={handleSumbit}>
+                {/* <form onSubmit={handleSumbit}>
                     <input
                         placeholder="내용을 입력하세요."
                         value={msg}
                         onChange={handleOnChange}
                     />
                     <button type="submit">전송</button>
-                </form>
+                </form> */}
+                <Conversation>
+                    <New>
+                        <div>
+                            <MessageCircle color="black" size={60} />
+                        </div>
+                        <Text>
+                            <h3>Message</h3>
+                            <p>Click on a contact to view messages.</p>
+                        </Text>
+                        <Button>hi</Button>
+                    </New>
+                </Conversation>
             </Chatlayout>
             {/* <div className="chat-bottom">
                 <form onSubmit={handleSumbit}>
@@ -116,7 +172,4 @@ export default function Chat() {
             </div> */}
         </Chatscreen>
     );
-}
-function sendChat(arg0: { message: string; timestamp: number; uid: any }) {
-    throw new Error("Function not implemented.");
 }

@@ -61,6 +61,8 @@ const router = createBrowserRouter([
     },
 ]);
 
+import { createTheme, MantineProvider } from "@mantine/core";
+
 function App() {
     const [isLoading, setIsLoading] = useState(true);
     const init = async () => {
@@ -68,14 +70,24 @@ function App() {
         setIsLoading(false);
     };
 
+    const theme = createTheme({
+        /** Put your mantine theme override here */
+    });
+
     useEffect(() => {
         init();
     }, []);
 
     return (
-        <Wrapper>
-            {isLoading ? <LoadingScreen /> : <RouterProvider router={router} />}
-        </Wrapper>
+        <MantineProvider theme={theme}>
+            <Wrapper>
+                {isLoading ? (
+                    <LoadingScreen />
+                ) : (
+                    <RouterProvider router={router} />
+                )}
+            </Wrapper>
+        </MantineProvider>
     );
 }
 
